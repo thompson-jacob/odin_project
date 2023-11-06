@@ -1,4 +1,3 @@
-
 require_relative './substrings.rb'
 
 RSpec.describe SubStrings do 
