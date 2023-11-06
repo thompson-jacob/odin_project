@@ -1,4 +1,4 @@
-require_relative '../../ruby_projects/caesar_cypher.rb'
+require_relative './caesar_cypher.rb'
 
 # Rspec.describe attaches to the class we want to test
 # subject can be defined at the top, with a new instantiation of the class - the subject can then be used as a variable? that we can chain methods onto - for example 

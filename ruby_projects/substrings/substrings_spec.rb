@@ -1,5 +1,5 @@
 
-require_relative '../../ruby_projects/substrings.rb'
+require_relative './substrings.rb'
 
 RSpec.describe SubStrings do 
   describe '#check_substrings' do
