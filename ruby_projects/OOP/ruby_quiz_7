@@ -1,0 +1,37 @@
+class Dog
+  def initialize(name)
+    @name = name
+  end
+
+  def bark 
+    "Ruff ruff"
+  end
+
+end
+
+# fido = Dog.new("fido")
+# fido.bark
+
+class Insect
+  def initialize(age_in_days)
+    @age_in_days = age_in_days
+  end
+
+  def age_in_years
+    @age_in_days.to_f / 365
+  end
+end
+
+# puts Insect.new(775).age_in_years.round(1)
+
+class Lamp
+
+ def self.about_me()
+    String.new("We brighten up peoples lives")
+  end
+
+end
+
+puts Lamp.about_me
+
+
