@@ -1,8 +1,8 @@
 class Board
   
-  attr_accessor :board
+  attr_accessor :board_arr
 
-  def initialize(board = [1,2,3,4,5,6,7,8,9])
-    @board = board
+  def initialize(board_arr = [1,2,3,4,5,6,7,8,9])
+    @board_arr = board_arr
   end
 end
