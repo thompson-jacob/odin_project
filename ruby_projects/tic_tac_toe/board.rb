@@ -6,3 +6,4 @@ class Board
     @board_arr = board_arr
   end
 end
+

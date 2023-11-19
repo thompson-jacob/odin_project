@@ -25,7 +25,7 @@ module Display
         
       HEREDOC
     
-    return board_display
+    puts board_display
     
   end
 

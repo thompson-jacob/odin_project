@@ -22,11 +22,9 @@ class Game
 
  
 def play_game
-  puts self.display_board(@board_array)
   i=0
   players = [@player1, @player2]
-  while i <= 9  do
-    pp players
+  while i < 9  do
     pick_location(players[0])
     
     winner = check_winner()
@@ -38,22 +36,37 @@ def play_game
     i+=1
 
     if i == 9
-      puts "draw"
+      puts "-----"
+      puts "DRAW!"
+      puts "-----\n"
+     
     end
 
     players.rotate!
-    pp players
+    
   end
 end
 
+
 def pick_location(player)
-  puts "#{player.name} - choose your location(using 1 - 9)"
-  pick1  = gets.chomp() #TODO error handling
-  @board_array[pick1.to_i - 1] = player.symbol
-  puts self.display_board(@board_array)
+   display_board(@board_array)
+  puts "#{player.name} - choose your location (using 1 - 9)"
+ 
+
+  current_options = @board_array.select { |i| i.is_a?(Integer) }
+
+  loop do
+    pick = gets.chomp.to_i
+    if current_options.include?(pick)
+      @board_array[pick - 1] = player.symbol
+      break
+    else
+      puts "Invalid choice. Please choose a valid remaining number from: #{current_options}"
+    end
+  end
 end
 
-def check_winner 
+def check_winner
   WIN_LINES.each do |line|
     if line.all? { |i| @board_array[i] == @player1.symbol }
       return @player1
@@ -86,21 +99,3 @@ def play_again
 end
 
 
-# puts "#{self.player1.name} - choose your location(using 1 - 9)"
-    # pick1  = gets.chomp() #TODO error handling
-    # @board_array[pick1.to_i - 1] = self.player1.symbol
-    # puts self.display_board(@board_array)
-
-    # winner = check_winner()
-    
-    # if winner != false
-    #   display_winner(winner)
-    #   break
-    # end
-    
-    # i+=1
-
-    # puts "#{self.player2.name} - choose your location(using 1 - 9)"
-    # pick2  = gets.chomp #TODO error handling
-    # @board_array[pick2.to_i - 1] = self.player2.symbol
-    # puts self.display_board(@board_array)
