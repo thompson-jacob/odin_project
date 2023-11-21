@@ -10,7 +10,7 @@ module Display
       answer = gets.chomp().downcase 
     end
     if answer == 'c' 
-      @player1 = ComputerPlayer.new('X')
+      @player1 = ComputerPlayer.new("Computer1", 'X')
     else
       puts "\nPlayer #1 - Enter your name"
       @player1.name = gets.chomp
@@ -24,13 +24,13 @@ module Display
       answer2 = gets.chomp().downcase 
     end
     if answer2 == 'c' 
-      @player2 = ComputerPlayer.new('O')
+      @player2 = ComputerPlayer.new("Computer2",'O')
     else
       puts "\nPlayer #2 - Enter your name"
-      @player1.name = gets.chomp
-      @player1.symbol = "X"
+      @player2.name = gets.chomp
+      @player2.symbol = "O"
     end
-    puts @player2
+
   end
 
   def display_board(board)

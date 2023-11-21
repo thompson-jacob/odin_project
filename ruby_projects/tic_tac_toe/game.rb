@@ -18,13 +18,12 @@ class Game
   @game_board = Board.new
   @board_array = @game_board.board_arr
   
+  
  end
 
  
 def play_game
   i=0
-  puts @player2.name
-  puts @player1
   players = [@player1, @player2]
   while i < 9  do
     pick_location(players[0])
@@ -57,9 +56,10 @@ def pick_location(player)
 
   current_options = @board_array.select { |i| i.is_a?(Integer) }
   
-  if player.name == "Computer" 
-    pick = player.computer_pick(@board_array)
+  if player.name == "Computer1" || player.name == "Computer2"
+    pick = player.computer_pick(@board_array, @game_board.current_win_lines)
     @board_array[pick - 1] = player.symbol
+    @game_board.update_win_lines((pick - 1), player.symbol)
     sleep(1)
     return
   end
@@ -68,6 +68,7 @@ def pick_location(player)
     pick = gets.chomp.to_i
     if current_options.include?(pick)
       @board_array[pick - 1] = player.symbol
+      @game_board.update_win_lines((pick - 1), player.symbol)
       break
     else
       puts "Invalid choice. Please choose a valid remaining number from: #{current_options}"
