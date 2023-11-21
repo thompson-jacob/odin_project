@@ -13,7 +13,7 @@ class Game
  attr_accessor :game_board, :player1, :player2
 
  def initialize
-  @player1 = Player.new()
+  @player1 = Player.new() 
   @player2 = Player.new()
   @game_board = Board.new
   @board_array = @game_board.board_arr
@@ -23,6 +23,8 @@ class Game
  
 def play_game
   i=0
+  puts @player2.name
+  puts @player1
   players = [@player1, @player2]
   while i < 9  do
     pick_location(players[0])
@@ -54,6 +56,13 @@ def pick_location(player)
  
 
   current_options = @board_array.select { |i| i.is_a?(Integer) }
+  
+  if player.name == "Computer" 
+    pick = player.computer_pick(@board_array)
+    @board_array[pick - 1] = player.symbol
+    sleep(1)
+    return
+  end
 
   loop do
     pick = gets.chomp.to_i
