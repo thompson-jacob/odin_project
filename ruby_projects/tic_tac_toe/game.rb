@@ -17,20 +17,15 @@ class Game
   @player2 = Player.new()
   @game_board = Board.new
   @board_array = @game_board.board_arr
-  
-  
  end
 
- 
 def play_game
   i=0
   players = [@player1, @player2]
   while i < 9  do
     pick_location(players[0])
-
     winner = check_winner()
     if check_winner() != false
-      display_board(@board_array)
       display_winner(winner)
       break
     end
@@ -41,25 +36,21 @@ def play_game
       puts "-----"
       puts "DRAW!"
       puts "-----\n"
-     
     end
 
     players.rotate!
-    
   end
 end
 
 
 def pick_location(player)
-   display_board(@board_array)
+  display_board(@board_array)
   puts "#{player.name} - choose your location (using 1 - 9)"
- 
-
   current_options = @board_array.select { |i| i.is_a?(Integer) }
-  
-  if player.name == "Computer1" || player.name == "Computer2"
+
+  if player.class == ComputerPlayer
     pick = player.computer_pick(@board_array, @game_board.current_win_lines)
-    puts pick
+    puts "#{player.name} selects position #{pick}"
     @board_array[pick - 1] = player.symbol
     @game_board.update_win_lines((pick - 1), player.symbol)
     sleep(1)
@@ -69,8 +60,10 @@ def pick_location(player)
   loop do
     pick = gets.chomp.to_i
     if current_options.include?(pick)
+    puts "#{player.name} selects position #{pick}"
       @board_array[pick - 1] = player.symbol
       @game_board.update_win_lines((pick - 1), player.symbol)
+      sleep(1)
       break
     else
       puts "Invalid choice. Please choose a valid remaining number from: #{current_options}"
@@ -90,7 +83,7 @@ def check_winner
 end
 
 def game_reset
-  # swaps players to determine initiative
+  # swaps players to determine initiative and re-instantiates Board
   @player1, @player2 = @player2, @player1
   @game_board = Board.new
   @board_array = @game_board.board_arr
@@ -107,7 +100,6 @@ def play_again
 
   answer == "y" 
  end
-
 end
 
 
