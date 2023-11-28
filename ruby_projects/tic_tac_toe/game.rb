@@ -27,9 +27,10 @@ def play_game
   players = [@player1, @player2]
   while i < 9  do
     pick_location(players[0])
-    
+
     winner = check_winner()
     if check_winner() != false
+      display_board(@board_array)
       display_winner(winner)
       break
     end
@@ -58,6 +59,7 @@ def pick_location(player)
   
   if player.name == "Computer1" || player.name == "Computer2"
     pick = player.computer_pick(@board_array, @game_board.current_win_lines)
+    puts pick
     @board_array[pick - 1] = player.symbol
     @game_board.update_win_lines((pick - 1), player.symbol)
     sleep(1)
