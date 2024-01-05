@@ -8,7 +8,7 @@ module Enumerable
 
   def my_any?
     self.my_each do |elem|
-      if yield elem
+      if yield(elem)
         return true
       end
     end
@@ -40,6 +40,33 @@ module Enumerable
     return initial_value
   end
 
+  def my_map
+    my_new_array = []
+    
+    self.my_each { |elem| my_new_array << yield(elem) }
+
+    return my_new_array
+  end
+
+  def my_none?
+    self.my_each do |elem| 
+      return false if yield(elem)
+    end
+     return true
+  end
+
+  def my_select 
+    new_array = []
+    self.my_each do |elem|
+      if yield(elem)
+        new_array << elem
+      end 
+    end
+    return new_array
+  end
+
+  
+
    
 end
 
@@ -54,3 +81,7 @@ class Array
     end
   end
 end
+
+
+
+
